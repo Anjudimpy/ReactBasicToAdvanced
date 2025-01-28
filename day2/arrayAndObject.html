@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Two React CDN Link -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script> 
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+    
+    <!-- Babel Link for compile the code -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Array and Object</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App(){
+        const car = ["BMW","Audi","Nexa","Thar","Maruti"];
+
+        const obj ={
+            name:"Alex",
+            age: 20,
+        }
+       return(<>
+         <h1>Array and object in JavaScript</h1>
+         {car}
+         <p>List OF Cars</p>
+         {car.map((item) => <ul type="1"><li>{item}</li></ul>)}
+
+         <p>Object </p>
+         <p>{obj.name}</p>
+        <p>{obj.age}</p>
+       </>)
+         
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App/>)
+    </script>
+</body>
+</html>
