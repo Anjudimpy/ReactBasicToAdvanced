@@ -14,10 +14,13 @@
     <script type="text/babel">
         function App(){
             const logedIn = true;
-            // Turrnary operator and AND operator
+            const firstName = "Alex";
+            const lastName = "Diaz";
+            // Turrnary operator, AND operator and OR operator
             return( <>
-            <h1>Hello{logedIn ? "Alex" :"User"}!</h1>
+            <h1>Hello{logedIn ? firstName :"User"}!</h1>
            {logedIn && <p>Welcom to in Jsx</p>}
+           <h3>Hello {lastName || firstName}</h3>
       
             </>)
         }
