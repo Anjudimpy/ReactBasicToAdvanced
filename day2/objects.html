@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!--Two React CDN Link -->
+     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script> 
+     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> 
+     
+     <!-- Babel Link for compile the code -->
+     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Object</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App(){
+        const students = [
+            {
+              name:"Ram",
+              age:20,
+              marks:80,
+            },
+            {
+            name:"Ayan",
+            age:23,
+            marks:70,
+            },
+        ]
+        return(
+            <>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th><th>Age</th><th>Marks</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   {students.map((std,index) => 
+                    <tr key={index}>
+                        <td>{std.name}</td>
+                        <td>{std.age}</td>
+                        <td>{std.marks}</td>
+                    </tr>
+                   )}
+                     
+                </tbody>
+        </table>
+            </>
+        )
+      }
+     ReactDOM.createRoot(document.getElementById('root')).render(<App/>)
+    </script>
+</body>
+</html>

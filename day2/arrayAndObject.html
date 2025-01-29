@@ -23,7 +23,9 @@
          <h1>Array and object in JavaScript</h1>
          {car}
          <p>List OF Cars</p>
-         {car.map((item) => <ul type="1"><li>{item}</li></ul>)}
+         <ul>
+         {car.map((item, index) => <li key={index}>{item}</li>)}
+         </ul>
 
          <p>Object </p>
          <p>{obj.name}</p>
