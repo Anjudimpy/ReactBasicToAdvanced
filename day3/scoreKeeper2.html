@@ -62,12 +62,12 @@
 
       }
      const Form = () => (
-        <form onSubmit = {handleSubmit}>
+       <form onSubmit = {handleSubmit}>
             <input value= {hit}/>
             <input ref = {inputRef}/>
             <button>Submit</button>
         </form>
-    )
+    ) 
     
       function App(){
          return(
@@ -79,7 +79,7 @@
             <Form/>
             <hr/>
             {ballwiseRes.map((res, index) =>(
-                <p key={index}>{res}</p>
+            <p key={index}>{res}</p>
             ))}
             </>
         )
