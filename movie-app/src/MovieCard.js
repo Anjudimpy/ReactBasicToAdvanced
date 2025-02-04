@@ -1,7 +1,41 @@
 import { Component } from "react";
 
 class MovieCard extends Component{
+    constructor(){
+        super();
+        this.state = {
+            title:"The Avengers",
+            plot:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae at ullam corrupti aperiam officia perspiciatis praesentiu",
+            price:"199",
+            rating:"8.9",
+            stars:0,
+        }
+       
+    }
+    addStars=() =>{
+        //form 1
+
+    //    this.setState({
+    //         stars: this.state.stars +0.5
+    //     });
+    
+    // form2
+
+        this.setState((prevState) =>{
+            return{
+                stars: prevState.stars+0.5
+            }
+        });
+    }
+    minusStars=() =>{
+        this.setState((prevState) =>{
+            return{
+                stars: prevState.stars-0.5
+            }
+        })
+    }
     render(){
+        const {title, plot, price, rating, stars} = this.state;
         return(
           <div className="main">
             <div className="movie-card">
@@ -10,18 +44,20 @@ class MovieCard extends Component{
                 </div>
 
                 <div className="right">
-                    <div className="title">The Avengers</div>
-                    <div className="plot">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae at ullam corrupti aperiam officia perspiciatis praesentium et nam saepe, sit optio magnam amet quasi. Doloremque itaque tenetur voluptates ut culpa?</div>
-                    <div className="price">Rs. 199</div>
+                    <div className="title">{title}</div>
+                    <div className="plot">{plot}</div>
+                    <div className="price">{price}</div>
 
                     <div className="footer">
-                        <div className="rating">8.9</div>
+                        <div className="rating">{rating}</div>
                         <div className="star-dis">
-                            <img className="str-btn" alt="increase" src="https://cdn-icons-png.flaticon.com/128/9312/9312231.png"/>
+                            <img onClick={this.minusStars} className="str-btn" alt="increase" src="https://cdn-icons-png.flaticon.com/128/43/43625.png"/>
+
                             <img className="stars"
                             src="https://cdn-icons-png.flaticon.com/128/616/616490.png"/>
-                            <img className = "str-btn " alt="decrease" src="https://cdn-icons-png.flaticon.com/128/43/43625.png"/>
-                            <span>0</span>
+
+                            <img onClick={this.addStars} className = "str-btn " alt="decrease" src="https://cdn-icons-png.flaticon.com/128/9312/9312231.png"/>
+                            <span>{stars}</span>
                         </div>
                         <button className="favourite-btn">Favourite</button>
                         <button className="cart-btn">Add to cart</button>
