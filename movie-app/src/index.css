@@ -117,8 +117,13 @@ footer.starCount {
     
 }
 .unfavourite-btn {
-  background-color: #db2828;
+  background-color: #f80643;
   color: #fff;
   text-shadow: none;
+  margin: 5px;
+}
+.remove{
+  background-color: #f80643;
+  color: #fff;
   margin: 5px;
 }
