@@ -9,10 +9,14 @@ class MovieCard extends Component{
             price:"199",
             rating:"8.9",
             stars:0,
+            fav: false
         }
        
     }
     addStars=() =>{
+        if(this.state.stars >= 5){
+            return;
+        }
         //form 1
 
     //    this.setState({
@@ -28,14 +32,20 @@ class MovieCard extends Component{
         });
     }
     minusStars=() =>{
+        if(this.state.stars <=0){
+            return;
+        }
         this.setState((prevState) =>{
             return{
                 stars: prevState.stars-0.5
             }
-        })
+        });
+    }
+    handleFav=()=>{
+       this.setState({fav: !this.state.fav})
     }
     render(){
-        const {title, plot, price, rating, stars} = this.state;
+        const {title, plot, price, rating, stars,fav} = this.state;
         return(
           <div className="main">
             <div className="movie-card">
@@ -59,7 +69,15 @@ class MovieCard extends Component{
                             <img onClick={this.addStars} className = "str-btn " alt="decrease" src="https://cdn-icons-png.flaticon.com/128/9312/9312231.png"/>
                             <span>{stars}</span>
                         </div>
-                        <button className="favourite-btn">Favourite</button>
+
+                        {/* {fav?<button className="unfavourite-btn " onClick={this.handleFav}>Un-favourite</button>:
+                        <button className="favourite-btn" onClick={this.handleFav}>Favourite</button>}
+                         */}
+                                            {/* or */}
+                                            
+                        <button className={fav?"unfavourite-btn":"favourite-btn"}onClick={this.handleFav}>{fav?"Un-favourite":"Favourite"}</button>
+
+
                         <button className="cart-btn">Add to cart</button>
                     </div>
                 </div>
