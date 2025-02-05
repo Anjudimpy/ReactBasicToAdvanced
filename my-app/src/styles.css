@@ -1,34 +1,38 @@
 * {
-  margin: 0;
-  padding: 0;
-}
-/* normal style to the div element irrespective of the theme */
-div {
-  box-sizing: border-box;
-  justify-content: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
-button {
-  width: 150px;
-  font-size: 1.1rem;
+h1 {
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.anime-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.anime-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000;
+  font-size: 1.3rem;
   font-weight: bold;
-  padding-block: 5px;
-  align-self: center;
+  color: #fff;
+  transition: 0.3s;
   cursor: pointer;
-  background: #2b2d42;
-  color: #fff;
 }
-/* style when the div have classname as dark */
-div .dark {
-  background-color: #2b2d42;
-  color: #fff;
+.anime-card img {
+  width: 300px;
+  height: 200px;
 }
-  /* style when the theme is selected as dark */
-.dark button {
-  background-color: #fff;
-  color: #000;
+
+.anime-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: scale(1.05);
 }
