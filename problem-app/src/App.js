@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import { Component } from "react";
+import List from "./List";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { courses } from "./data";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { bagItems: [] };
+  }
+
+  isCourseinBag = (id) => {
+    return !!this.state.bagItems.find((c) => c.id === id);
+  };
+
+  handleAddToBag = (id) => {
+    const course = courses.find((c) => c.id === id);
+    this.setState({ bagItems: [course, ...this.state.bagItems] });
+  };
+
+  handleRemoveFromBag = (id) => {
+    const filteredCourses = this.state.bagItems.filter((c) => c.id !== id);
+    this.setState({ bagItems: filteredCourses });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Navbar bagCount={this.state.bagItems.length} />
+        <h3>CodeTube Catalog</h3>
+        <div className="container">
+          <List
+            bagItems={this.state.bagItems}
+            isCourseinBag={this.isCourseinBag}
+            handleAdd={this.handleAddToBag}
+            handleRemove={this.handleRemoveFromBag}
+          />
+          <Sidebar />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

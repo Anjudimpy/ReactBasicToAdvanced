@@ -48,19 +48,25 @@ class App extends Component{
   }
 
   handleCart = (movie) =>{
-      const {movies} = this.state;
+      let {movies, countCart} = this.state;
       const mid = movies.indexOf(movie);
 
       movies[mid].cart = !movies[mid].cart;
+      if(movies[mid].cart){
+           countCart += 1;
+      } else{
+        countCart -= 1;
+      }
       this.setState({
-          movies
+          movies, 
+          countCart
       })
   }
   render(){
-    const {movies} = this.state;
+    const {movies, countCart} = this.state;
     return(
       <>
-      <Navbar/>
+      <Navbar countCart = {countCart}/>
       <MovieList movies = {movies} 
                  addStars = {this.handleInc}
                  dceasreStar ={this.handleDec}
