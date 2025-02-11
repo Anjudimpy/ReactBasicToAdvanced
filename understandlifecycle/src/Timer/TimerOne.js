@@ -5,7 +5,7 @@ import { Component } from "react";
        super();
 
        this.state ={
-        time: 0 
+        time: 10 
        }
 
        this.timer = null
@@ -37,7 +37,7 @@ import { Component } from "react";
         console.log("___________________________________________")
           
         this.timer =  setInterval(()=>{
-            this.setState((prevState) =>({time:prevState.time +1}))
+            this.setState((prevState) =>({time:prevState.time - 1}))
  
         },1000)
    }
@@ -51,8 +51,12 @@ import { Component } from "react";
         console.log("TimerOne componentDidUpdate")
         console.log("____________________________")
 
-        if(this.state.time === 10){
+        if(this.state.time === 0){
             clearInterval(this.timer);
         }
+    }
+
+    componentWillUnmount(){
+        console.log("TimerOne componentWillunmout")
     }
 }
