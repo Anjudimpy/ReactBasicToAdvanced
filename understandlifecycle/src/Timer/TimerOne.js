@@ -36,10 +36,7 @@ import { Component } from "react";
         console.log("TimerOne ComponentDidMount")
         console.log("___________________________________________")
           
-        this.timer =  setInterval(()=>{
-            this.setState((prevState) =>({time:prevState.time - 1}))
- 
-        },1000)
+       
    }
 
     getSnapshotBeforeUpdate(preProps, preState){
@@ -47,13 +44,20 @@ import { Component } from "react";
         return null
     }
 
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
         console.log("TimerOne componentDidUpdate")
         console.log("____________________________")
-
-        if(this.state.time === 0){
-            clearInterval(this.timer);
+      if(prevProps.timerOn !== this.props.timerOn){
+        if(this.props.timerOn){
+            this.timer =  setInterval(()=>{
+                this.setState((prevState) =>({time:prevState.time - 1}))
+     
+            },1000)
+        } else{
+            clearInterval(this.timer)
         }
+      }
+     
     }
 
     componentWillUnmount(){
