@@ -44,7 +44,7 @@ import { Component } from "react";
         return null
     }
 
-    componentDidUpdate(prevProps){
+    componentDidUpdate(prev){
         console.log("TimerOne componentDidUpdate")
         console.log("____________________________")
       if(prevProps.timerOn !== this.props.timerOn){
