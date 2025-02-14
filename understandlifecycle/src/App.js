@@ -1,38 +1,41 @@
-// import ComponentA from "./ComponentA";
-// import TimerOne from "./Timer/TimerOne";
-// import React from "react";
+import React from "react";
 
-import FetchApiData from "./ClassOne/FetchData"
-import LifeCycleSequence from "./ClassOne/LifeCycleSequence"
+import FetchApiData from "./Classes/FetchData"
+import MountingPhase from "./Classes/MountingPhase"
+import Timer from "./Classes/Timer"
+import UpdatePhase from "./Classes/UpdatePhase"
+import ErrorBoundry from "./Classes/ErrorBoundry";
 
 
-// class App extends React.Component {
-//   constructor(){
-//     super();
-//     this.state = {
-//       timerOn: false
-//     }
-//   }
+class App extends React.Component{
+  constructor(props){
+  super(props);
+  this.state= {
+   timerOn: false
+  }
+  }
 
-//   handleTimerOn = () =>{
-//     this.setState((preState) => ({timerOn: !preState.timerOn}));
-//   }
-// render(){
-//   return(<>
-//   <button onClick={this.handleTimerOn}> {this.state.timerOn?"start":"stop"}</button>
-// <TimerOne timerOn = {this.state.timerOn}/>
-//   </>)
-// }
-// }
+  handelTimer=()=>{
+    this.setState((prevState) => ({timerOn: !prevState.timerOn}))
+  }
+  render(){
+    return(
+      <>
+      
+      {/* <MountingPhase/> */}
+      <ErrorBoundry>
+              <FetchApiData/>
+      </ErrorBoundry>
+    
+      {/* <UpdatePhase/> */}
 
-// export default App;
 
-function App(){
-  return(
-    <>
-    <LifeCycleSequence/>
-    <FetchApiData/>
-    </>
-  )
+        <Timer timerOn={this.state.timerOn}/>
+       <button onClick={this.handelTimer}>{this.state.timerOn? "STOP":"START"}</button>
+      {/* {this.state.timer?<Timer/>:null} */}
+      </>
+    )
+  }
+ 
 }
 export default App

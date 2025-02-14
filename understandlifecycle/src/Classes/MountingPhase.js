@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class LifeCycleSequence extends React.Component{
+export default class MountingPhase extends React.Component{
  constructor(){
     super();
     this.state = {

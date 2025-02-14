@@ -1,68 +1,59 @@
-import React from "react";
-import ImageList from "./components/ImageList";
 import "./styles.css";
+import { Component } from "react";
+import Person from "./components/Person";
 
-export default class App extends React.Component {
-  constructor() {
-    super();
+class App extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      images: [],
-      imageUrl: "",
+      network: [
+        {
+          id: 1,
+          img:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1675071817/pexels-rodnae-productions-7348711_doe69b.jpg",
+          email: "john@gmail.com",
+          show: true
+        },
+        {
+          id: 2,
+          img:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1675071807/pexels-zaid-mohammed-15131063_bysy0s.jpg",
+          email: "stephen@gmail.com",
+          show: true
+        },
+        {
+          id: 3,
+          img:
+            "https://res.cloudinary.com/dl26pbek4/image/upload/v1675071812/pexels-ali-kazal-14520051_qrdgym.jpg",
+          email: "alex@gmail.com",
+          show: true
+        }
+      ]
     };
   }
-  setImageUrl = (e) => {
-    //event handler to set the url of the image
-    this.setState({ imageUrl: e.target.value });
-  };
-  // Function to add image to local storage
-  addImageToLS = () => {
-    localStorage.setItem(
-      "images",
-      JSON.stringify([...this.state.images, this.state.imageUrl])
-    );
-  };
 
-  // Function to get images from the local storage
-  getImagesFromLS = () => {
-    const images = localStorage.getItem("images");
-    if (!images) {
-      localStorage.setItem("images", []);
-      return [];
-    }
-    return JSON.parse(images);
-  };
-
-  onAddImage = (e) => {
-    //function to add a new image
-    e.preventDefault();
-    this.addImageToLS();
-    this.setState((prevState) => {
-      return {
-        images: [...prevState.images, this.state.imageUrl],
-        imageUrl: "",
-      };
-    });
-  };
-
-  // Use appropriate lifecycle method to retrieve images from local storage when the app mounts
-  // Step1: Fetch images from local storage
-  // Step2: Update state with retrieved images
-
-  
+  // Create function to remove person from your network here
+  handelRemove = (i) =>{
+    const network = [...this.state.network];
+    network[i].show = false;
+    this.setState({ network });
+  }
   render() {
     return (
-      <>
-        <form onSubmit={this.onAddImage}>
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={this.state.imageUrl}
-            onChange={this.setImageUrl}
-          />
-          <button>Add Image</button>
-        </form>
-        <ImageList images={this.state.images} />
-      </>
+      <div className="App">
+        <h1>My Network</h1>
+        <div className="list">
+          {this.state.network.map((p, i) => ( p.show &&
+          
+            <Person key={p.id} person={p} index={i} onRemove={this.handelRemove} />
+
+          
+            
+          ))}
+        </div>
+      </div>
     );
   }
 }
+
+export default App;
