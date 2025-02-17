@@ -1,11 +1,12 @@
-import StateInFunction from "./state b/StateInFunction";
-import StateInClassBase from "./state b/w class & fun base component/StateInclassBase";
+
+import StateInClassBase from "./diff_class_&_fun/StateInclassBase";
+import StateInFunction from "./diff_class_&_fun/StateInFunction";
 
 function App() {
   return (
     <div className="App">
       <h3>Class Base Component</h3>
-         <StateInClassBase/>
+         {/* <StateInClassBase/> */}
 
          <h3>Function Base Component</h3>
          <StateInFunction/>

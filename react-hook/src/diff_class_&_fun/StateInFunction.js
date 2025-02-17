@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function StateInFunction(){
     const [name, setName] = useState("Harry");
     const [last, setLastname] = useState("potter")
+
+    useEffect(() => {
+         document.title = name + " " + last
+    },[])
     return(
         <>
         <div>

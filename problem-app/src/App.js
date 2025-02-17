@@ -1,67 +1,27 @@
+import "./App.css";
 import React from "react";
-import ImageList from "./components/ImageList";
-import "./styles.css";
+import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
+import ExpenseInfo from "./components/ExpenseInfo/ExpenseInfo";
+import ExpenseList from "./components/ExpenseList/ExpenseList";
 
 export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      images: [],
-      imageUrl: "",
-    };
-  }
-  setImageUrl = (e) => {
-    //event handler to set the url of the image
-    this.setState({ imageUrl: e.target.value });
-  };
-  // Function to add image to local storage
-  addImageToLS = () => {
-    localStorage.setItem(
-      "images",
-      JSON.stringify([...this.state.images, this.state.imageUrl])
-    );
-  };
+  // Create state for the expenses here
 
-  // Function to get images from the local storage
-  getImagesFromLS = () => {
-    const images = localStorage.getItem("images");
-    if (!images) {
-      localStorage.setItem("images", []);
-      return [];
-    }
-    return JSON.parse(images);
-  };
-
-  onAddImage = (e) => {
-    //function to add a new image
-    e.preventDefault();
-    this.addImageToLS();
-    this.setState((prevState) => {
-      return {
-        images: [...prevState.images, this.state.imageUrl],
-        imageUrl: "",
-      };
-    });
-  };
-
-  // Use appropriate lifecycle method to retrieve images from local storage when the app mounts
-  // Step1: Fetch images from local storage
-  // Step2: Update state with retrieved images
-
-  
   render() {
     return (
       <>
-        <form onSubmit={this.onAddImage}>
-          <input
-            type="text"
-            placeholder="Image URL"
-            value={this.state.imageUrl}
-            onChange={this.setImageUrl}
-          />
-          <button>Add Image</button>
-        </form>
-        <ImageList images={this.state.images} />
+        <h2 className="mainHeading">Expense Tracker</h2>
+        <div className="App">
+          {/* Render expense form here */}
+          <ExpenseForm/>
+          <div className="expenseContainer">
+            {/* Render Expense Info here
+          
+            Render Expense List here */}
+            <ExpenseInfo/>
+            <ExpenseList/>
+          </div>
+        </div>
       </>
     );
   }

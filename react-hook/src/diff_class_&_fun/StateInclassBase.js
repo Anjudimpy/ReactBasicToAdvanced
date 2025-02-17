@@ -4,8 +4,8 @@ export default class StateInClassBase extends React.Component{
     constructor(){
         super();
         this.state = {
-            firstname:"",
-            lastname: ""
+            firstname:"Harry",
+            lastname: "Potter"
         }
     }
 
@@ -17,27 +17,32 @@ export default class StateInClassBase extends React.Component{
         this.setState({lastname: e.target.value})
     }
 
+    componentDidMount(){
+        document.title = (this.state.firstname + " " + this.state.lastname)
+    }
+
+    componentDidUpdate(){
+        document.title = (this.state.firstname + " " + this.state.lastname)
+    }
+
     render(){
         return(
             <>
             <div>
                 <label>First Name: </label>
                 <input value={this.state.name}
-                       onChange={this.handlelastName}
+                       onChange={this.handleFirstName}
                 />
             </div><br/>
             <div>
                 <label>Last Name: </label>
                 <input value={this.state.name}
-                        onChange={this.handleFirstName}     />
+                        onChange={this.handlelastName}     />
             </div>
 
             <br/>
             <br/>
             <h1>Hello, {this.state.firstname}  {this.state.lastname}</h1>
-
-               
-            
             </>
         )
     }
