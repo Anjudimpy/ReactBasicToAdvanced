@@ -2,11 +2,20 @@ import { useEffect, useState } from "react"
 
 export default function StateInFunction(){
     const [name, setName] = useState("Harry");
-    const [last, setLastname] = useState("potter")
+    const [last, lastname] = useState("potter")
 
     useEffect(() => {
-         document.title = name + " " + last
+         document.title = name + " " + last;
     },[])
+
+    useEffect(() =>{
+        let timer = setInterval(() =>{
+            console.log("window_width: ", window.innerWidth);
+        },2000);
+
+        return ()=>clearInterval(timer);
+    }); 
+
     return(
         <>
         <div>
@@ -19,7 +28,7 @@ export default function StateInFunction(){
         <div>
             <label>Last NAME:</label>
             <input value={last}
-                   onChange={(e) => setLastname(e.target.value)}/>
+                   onChange={(e) => lastname(e.target.value)}/>
 
         </div>
 

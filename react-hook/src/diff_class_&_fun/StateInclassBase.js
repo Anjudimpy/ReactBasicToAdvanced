@@ -7,6 +7,7 @@ export default class StateInClassBase extends React.Component{
             firstname:"Harry",
             lastname: "Potter"
         }
+        this.timer =  null;
     }
 
     handleFirstName =(e) =>{
@@ -19,10 +20,18 @@ export default class StateInClassBase extends React.Component{
 
     componentDidMount(){
         document.title = (this.state.firstname + " " + this.state.lastname)
+
+        this.timer = setInterval(() =>{
+                console.log("window_width: ", window.innerWidth)
+        },2000);
     }
 
     componentDidUpdate(){
         document.title = (this.state.firstname + " " + this.state.lastname)
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.timer)
     }
 
     render(){
