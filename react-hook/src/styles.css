@@ -1,0 +1,29 @@
+.App{
+    width: 100%;
+    text-align: center;
+
+} 
+.blog_container{
+    width: 100%;
+    display: block;
+    justify-content: center;
+
+}
+.blog{
+    position: relative;
+    left: 35%;
+    background-color: rgb(3, 178, 178);
+    padding-bottom: 2rem;
+    color: white;
+    width: 30%;
+    border-radius: 10px;
+}
+.postBlog{
+    position: relative;
+    left: 35%;
+    background-color: rgb(189, 249, 227);
+    padding-bottom: 2rem;
+    /* color: white; */
+    width: 30%;
+    border-radius: 10px;
+}
