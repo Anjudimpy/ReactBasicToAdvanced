@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./ExpenseInfo.module.css";
 
-export default class ExpenseInfo extends React.Component {
-  render() {
+export default function ExpenseInfo() {
     return (
       <div className={styles.expenseInfoContainer}>
         <div className={styles.balance}>
@@ -26,4 +25,4 @@ export default class ExpenseInfo extends React.Component {
       </div>
     );
   }
-}
+

@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ExpenseForm.module.css";
 
-export default class ExpenseForm extends React.Component {
+export default function ExpenseForm(){
   // Create state or ref for the inputs here
-
-  render() {
+    const [input, setInput] = useState();
     return (
       <form className={styles.form} onSubmit={() => {}}>
         <h3>Add new transaction</h3>
@@ -31,4 +30,4 @@ export default class ExpenseForm extends React.Component {
       </form>
     );
   }
-}
+
