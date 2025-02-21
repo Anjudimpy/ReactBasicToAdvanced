@@ -7,6 +7,22 @@ export default class Input extends React.Component{
             name: "",
             lastname:''
         }
+        this.timer =  null;
+    }
+  componentDidMount(){
+      document.title =  this.state.name + " " + this.state.lastname;
+     
+      this.timer =  setInterval(() => {
+        console.log("Window width: ", window.innerWidth);
+      }, 2000);
+  }
+    componentDidUpdate(){
+        document.title = this.state.name + " " + this.state.lastname;
+    }
+
+    componentWillUnmount(){
+        
+        clearInterval(this.timer);
     }
 
     render(){
