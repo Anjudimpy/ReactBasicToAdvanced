@@ -11,8 +11,6 @@ export default function  ResetPassword(){
     //        setEmail(email)
     //     } 
 
-    //     localStorage.setItem("email", email)
-
     // },[])
 
     // useEffect(()=>{

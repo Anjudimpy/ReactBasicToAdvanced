@@ -25,7 +25,7 @@ function App() {
          <div>
          <h2>Welcome!</h2>
          {form == 'login'? <LoginPage/>:<ResetPassword/>}
-        <br/><br/>
+
          <button onClick={()=>{setForm(form ==="login"?"reset":"login")}}>
           {form === "login"?"Forgot Password":"Back to login"}
          </button>

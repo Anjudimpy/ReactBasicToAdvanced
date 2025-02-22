@@ -11,8 +11,6 @@ export default function LoginPage(){
     //     if(email){
     //         setEmail(email)
     //     }
-        
-    //     localStorage.setItem("email", email)
 
     // },[])
     

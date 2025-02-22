@@ -9,8 +9,6 @@ export default function useLocalstorage(){
            setEmail(email)
         } 
 
-        localStorage.setItem("email", email)
-
     },[])
 
     useEffect(()=>{

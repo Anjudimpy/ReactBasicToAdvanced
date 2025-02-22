@@ -1,34 +1,18 @@
-import { useState } from "react";
-import ExpenseForm from "./components/ExpenseForm/ExpenseForm";
-import ExpenseInfo from "./components/ExpenseInfo/ExpenseInfo";
-import ExpenseList from "./components/ExpenseList/ExpenseList";
-import "./App.css";
+import React from "react";
+import useFetch from "./useFetch";
+import "./styles.css";
 
-function App() {
-  const [expenses, setExpenses] = useState([]);
+export default function App() {
+  const url = "https://v2.jokeapi.dev/joke/Programming?type=single";
+  const { data, loading, error, getJoke } = useFetch(url);
 
-  // Create function to add an expense
-const addExpenses=(expense) =>{
-     setExpenses((prevExpense) =>[expense, ...prevExpense]);
-     console.log(expenses)
-  }
-
-  // Create function to delete an expense
-const deleteExpense = (id) =>{
-  setExpenses(expenses.filter((expense) => id !== expense.id));
-}
   return (
-    <>
-      <h2 className="mainHeading">Expense Tracker</h2>
-      <div className="App">
-        <ExpenseForm addExpenses={addExpenses} />
-        <div className="expenseContainer">
-          <ExpenseInfo expenses={expenses} />
-          <ExpenseList expenses={expenses} deleteExpense= {deleteExpense}/>
-        </div>
-      </div>
-    </>
+    <div className="App">
+      <h1>Joke Generator</h1>
+      {loading ? <p>Loading...</p> : error ? <p>Something went wrong…</p> : <h2>{data?.joke}</h2>}
+      <button className="btn" onClick={getJoke}>
+        New Joke
+      </button>
+    </div>
   );
 }
-
-export default App;
