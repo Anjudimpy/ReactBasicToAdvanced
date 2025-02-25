@@ -7,12 +7,12 @@ export default function App() {
   const { data, loading, error, getJoke } = useFetch(url);
 
   return (
-    <div className="App">
-      <h1>Joke Generator</h1>
-      {loading ? <p>Loading...</p> : error ? <p>Something went wrong…</p> : <h2>{data?.joke}</h2>}
-      <button className="btn" onClick={getJoke}>
-        New Joke
-      </button>
-    </div>
+    loading ? "Loading..." : error ? "Something went wrong" : (
+      <div className="App">
+        <h1>Joke Generator</h1>
+        <h2>{data?.joke}</h2>
+        <button className="btn" onClick={getJoke}>New Joke</button>
+      </div>
+    )
   );
 }

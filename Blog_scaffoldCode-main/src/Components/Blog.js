@@ -1,5 +1,8 @@
 import { useReducer } from 'react';
 import { useEffect, useRef, useState } from 'react'
+import { db } from '../firebase';
+import { collection, addDoc } from "firebase/firestore"; 
+
 
 function blogReducer(state, action){
 switch(action.type){
@@ -35,7 +38,7 @@ export default function Blog(){
     },[blogs])
 
     //Passing the synthetic event as argument to stop refreshing the page on submit
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault();
 
         // setBlogs([{title:formData.title, content: formData.content}, ...blogs]);
@@ -45,6 +48,11 @@ export default function Blog(){
        
         setFormData({title:"", content:""})
         titleRef.current.focus();
+        const docRef = await addDoc(collection(db,"blogs"),{
+            title:formData.title,
+            content: formData.content,
+            createdOn: new Date()
+        });
 
 
     }

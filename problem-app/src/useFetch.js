@@ -6,8 +6,7 @@ const useFetch = (url) => {
   const [error, setError] = useState(null);
 
   const getJoke = async () => {
-    setLoading(true);
-    setError(null);
+ 
     try {
       const response = await fetch(url);
       if (!response.ok) {
