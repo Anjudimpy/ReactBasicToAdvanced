@@ -1,0 +1,16 @@
+.navbarContainer{
+    display: flex;
+    background: linear-gradient(to left,rgb(228, 194, 255), rgb(198, 91, 255));
+    color: white;
+    font-weight: 700;
+    padding: 0 2rem;
+}
+h3{
+    font-size: 1.4rem;
+    
+}
+.navbarContainer img {
+    height: 3rem;
+    width: 3rem;
+    margin: 0.5rem;
+}
