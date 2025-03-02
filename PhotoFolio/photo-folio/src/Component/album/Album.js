@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "./Album.module.css";
-import CreateAlbums from "./CreateAlbums";
 
 export default function Album({ albums,handleSelectAlbum,showCreateAlbums, setShowCreateAlbums }) {
 
@@ -36,7 +35,7 @@ export default function Album({ albums,handleSelectAlbum,showCreateAlbums, setSh
             <div className={styles.cardImg}>
               <img src="img.png" alt="Album" />
             </div>
-            {album}
+            {album.albumName}
           </div>
         ))}
       </div>

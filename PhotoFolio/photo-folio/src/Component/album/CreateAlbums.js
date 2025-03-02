@@ -1,16 +1,13 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./Album.module.css"
+
+
 export  default function CreateAlbums(props){
    
-    const{albums, setAlbums,albumName, setAlbumName} = props;
+    const{albums, setAlbums,albumName, setAlbumName, handleSbumit} = props;
+      
 
-    function handleAlbumCreate(){
-        if(albumName.trim()){
-          setAlbums([albumName,...albums]);
-          setAlbumName("");
-
-        }
-    }
+   
 
     function handleAlbumClear(){
        setAlbumName("");
@@ -19,12 +16,14 @@ export  default function CreateAlbums(props){
     return(
       <>
       <div className={styles.createAlbumsContainer}>
+        <form onSubmit={handleSbumit}>
         <h2>Create an album</h2>
         <div className={styles.createAlbums}>
-            <input placeholder="Album Name"  value={albumName.title} onChange={(e)=>setAlbumName(e.target.value)}/>
+            <input placeholder="Album Name"  value={albumName} onChange={(e)=>setAlbumName(e.target.value)}/>
               <button className={styles.clearBtn} onClick={handleAlbumClear}>Clear</button>
-           <button className={styles.createBtn} onClick={handleAlbumCreate}>Create</button>
+           <button className={styles.createBtn} >Create</button>
            </div>
+           </form>
         </div>
           </>
     )
