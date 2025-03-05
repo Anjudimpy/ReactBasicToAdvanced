@@ -8,12 +8,10 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
   const [images, setImages] = useState([]);
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
   const inputRef = useRef(null);
   const [editImage, setEditImage] = useState(null);
-  const [searchImage, setSearchImage] = useState("");
-  const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
- 
   async function fetchImagesByAlbum(albumId) {
     if (!albumId) return;
     try {
@@ -35,7 +33,6 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
 
   function handleSearchInput() {
     setShowSearchInput((prev) => !prev);
-    setSearchImage("");
   }
 
   useEffect(() => {
@@ -66,7 +63,6 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
         img_name: imageName.imgTitle,
         img: imageName.imgLink,
       });
-
       setImages(images.map((img) => (img.id === editImage.id ? { ...img, img_name: imageName.imgTitle, img: imageName.imgLink } : img)));
       setEditImage(null);
     } else {
@@ -82,29 +78,20 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
     setShowUploadForm(false);
   }
 
-  const filterImages = images.filter((img)=>
-    img.img_name.toLowerCase().includes(searchImage.toLocaleLowerCase())
-  );
-
-  function handleImageClick(index) {
-    setSelectedImageIndex(index);
+   setSelectedImageIndex(index);
   }
 
   function handleNextImage() {
-    setSelectedImageIndex((prevIndex) => 
-      prevIndex < images.length - 1 ? prevIndex + 1 : prevIndex
-    );
+    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   }
-  
+
   function handlePrevImage() {
-    setSelectedImageIndex((prevIndex) => 
-      prevIndex > 0 ? prevIndex - 1 : prevIndex
-    );
+    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   }
-  
 
   function closeImageViewer() {
-    setSelectedImageIndex(null);
+     function handleImageClick(index) {
+  setSelectedImageIndex(null);
   }
 
   return (
@@ -129,12 +116,7 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
           </div>
         </div>
         <div className={styles.searchBar}>
-          {showSearchInput && 
-          <input placeholder="Search..." 
-          ref={inputRef} 
-          value={searchImage}
-          onChange={(e)=>setSearchImage(e.target.value)}
-          />}
+          {showSearchInput && <input placeholder="Search..." ref={inputRef} />}
           <img
             src={showSearchInput ? "close.png" : "search.png"}
             alt="search Icon"
@@ -148,21 +130,12 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
       </div>
 
       <div className={styles.imageCardContainer}>
-        {filterImages.length > 0 ? (
-         filterImages.map((img, index) => (
+        {images.length > 0 ? (
+          images.map((img, index) => (
             <div key={img.id}>
               <div className={styles.updateDaleteContainer}>
-
-                <img src="updateIcon.png" alt="updateIcon"
-                 onClick={() => {
-                   setEditImage(img); 
-                   setShowUploadForm(true);
-                   setImageName({ imgTitle: img.img_name, imgLink: img.img });
-                    }} />
-
-                <img className={styles.deleteIcon} src="deleteIcon.png" alt="deleteIcon" 
-                onClick={() => deleteImg(img.id)} />
-                
+                <img src="updateIcon.png" alt="updateIcon" onClick={() => { setEditImage(img); setShowUploadForm(true); setImageName({ imgTitle: img.img_name, imgLink: img.img }); }} />
+                <img className={styles.deleteIcon} src="deleteIcon.png" alt="deleteIcon" onClick={() => deleteImg(img.id)} />
               </div>
               <div className={styles.imageCard} onClick={() => handleImageClick(index)}>
                 <img src={img.img} alt={img.img_name} />
@@ -174,17 +147,15 @@ export default function UserAlbum({ selectedAlbum, handleBack }) {
           <p>No images added yet.</p>
         )}
       </div>
-       {selectedImageIndex !== null && (
-           <div>
-                <div className={styles.imageViewer}>
-                <button className={styles.navButton} onClick={handlePrevImage}>&lt;</button>
-                <img src={images[selectedImageIndex].img} alt={images[selectedImageIndex].img_name} className={styles.largeImage} />
-                <button className={styles.navButton} onClick={handleNextImage}>&gt;</button>
-              </div>
-               <button className={styles.closeButton} onClick={closeImageViewer}>X</button> 
-  </div>
-              
-            )}
+
+      {selectedImageIndex !== null && (
+        <div className={styles.imageViewer}>
+          <button className={styles.navButton} onClick={handlePrevImage}>&lt;</button>
+          <img src={images[selectedImageIndex].img} alt={images[selectedImageIndex].img_name} className={styles.largeImage} />
+          <button className={styles.navButton} onClick={handleNextImage}>&gt;</button>
+          <button className={styles.closeButton} onClick={closeImageViewer}>X</button>
+        </div>
+      )}
     </div>
   );
 }
